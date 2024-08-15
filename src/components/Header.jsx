@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <>
     <HStack p={"4"}  shadow={"base"} color={"white"} bgColor={"black"}>
-        <Button variant={"unstyled"} color={"white"}><Link to="/"></Link> Home</Button>
+        <Button variant={"unstyled"} color={"white"}><Link to="/"></Link> Home1</Button>
         
 
         <Button variant={"unstyled"} color={"white"}><Link to="/exchanges"></Link> Exchanges</Button>
