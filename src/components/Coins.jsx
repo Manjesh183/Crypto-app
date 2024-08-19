@@ -2,7 +2,7 @@ import React from 'react'
 
 const Coins = () => {
   return (
-    <div>mera Coins</div>
+    <div>MKS Coins</div>
   )
 }
 
