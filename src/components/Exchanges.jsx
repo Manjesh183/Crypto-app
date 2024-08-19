@@ -99,8 +99,8 @@ const Exchanges = () => {
     fetchExchanges();
   }, []);
 
-  if (error)
-    return <ErrorComponent message={"Error While Fetching Exchanges"} />;
+  // Ensure error handling is checked before loading
+  if (error) return <ErrorComponent  />;
 
   return (
     <Container maxW={"container.xl"}>
@@ -157,3 +157,4 @@ const ExchangeCard = ({ name, img, rank, url }) => (
 );
 
 export default Exchanges;
+

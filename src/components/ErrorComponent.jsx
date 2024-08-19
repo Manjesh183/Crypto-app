@@ -2,7 +2,7 @@ import React from 'react'
 
 const ErrorComponent = () => {
   return (
-    <div>ErrorComponent hai</div>
+    <div>Exchange data-Error in Loading</div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <div>i am Loader </div>
+    <div>its Loading... </div>
   )
 }
 
