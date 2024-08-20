@@ -12,20 +12,34 @@ import {
 } from "@chakra-ui/react";
 import Loader from "./Loader";
 import ErrorCoin from "../ErrorCoin";
-import { Link } from "react-router-dom";
+import CoinCard from "./CoinCard";
+
+
 
 
 const Coins = () => {
+  
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [page,setPage]=useState(1);
   const [currency,setCurrency]=useState("inr");
 
+  
+  const currencySymbol =
+    currency === "inr" ? "₹" : currency === "eur" ? "€" : "$";
+
+  const changePage = (page) => {
+    setPage(page);
+    setLoading(true);
+  };
+
+  const btns = new Array(132).fill(1);
+
   useEffect(() => {
-    const fetchExchanges = async () => {
+    const fetchCoins = async () => {
       try {
-        const { data } = await axios.get(`${server}/coins/markets?vs_currency=${currency}&page=${page}`);
+        const { data } = await axios.get( `${server}/coins/markets?vs_currency=${currency}&page=${page}`);
         setCoins(data);
         console.log(coins);
         setLoading(false);
@@ -34,11 +48,11 @@ const Coins = () => {
         setLoading(false);
       }
     };
-    fetchExchanges();
+    fetchCoins();
   }, [currency,page]);
 
   // Ensure error handling is checked before loading
-  if (error) return <ErrorCoin  />;
+  if (error) return <ErrorCoin message={"Error While Fetching Coins"}  />;
 
   return (
     <Container maxW={"container.xl"}>
@@ -49,12 +63,13 @@ const Coins = () => {
           <HStack wrap={"wrap"} justifyContent={"space-evenly"}>
             {coins.map((i) => (
               <CoinCard
-                key={i.market_cap_rank}
-                name={i.name}
-                img={i.image}
+                key  ={i.market_cap_rank}
+                name ={i.name}
+                img  ={i.image}
                 price={i.current_price}
-                symbol={i.symbol}
-               id={i.id}
+              symbol ={i.symbol}
+               id    ={i.id}
+      
               />
             ))}
           </HStack>
@@ -64,42 +79,11 @@ const Coins = () => {
   );
 };
 
-const CoinCard = ({ id,name, img,price,symbol,currencySymbol="₹" }) => (
- <Link to={`${server}/coin/${id}`} target={"blank"}>
- <VStack
-      w={"52"}
-      shadow={"lg"}
-      p={"8"}
-      borderRadius={"lg"}
-      transition={"all 0.3s"}
-      m={"4"}
-      css={{
-        "&:hover": {
-          transform: "scale(1.1)",
-        },
-      }}
-    >
-      <Image
-        src={img}
-        w={"10"}
-        h={"10"}
-        objectFit={"contain"}
-        alt={"Exchange"}
-      />
-      <Heading size={"md"} noOfLines={1}>
-        {name}
-      </Heading>
 
-      <Text noOfLines={1}>{symbol}</Text>
-      <Text noOfLines={1}>{price?`${currencySymbol}${price}`:"NA"}</Text>
-      
-    </VStack></Link>
-    
-  
-);
 
 
 
 
 
 export default Coins
+
