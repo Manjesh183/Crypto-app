@@ -55,35 +55,9 @@ const Coins = () => {
   if (error) return <ErrorCoin message={"Error While Fetching Coins"}  />;
 
   return (
-    <Container maxW={"container.xl"}>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <HStack wrap={"wrap"} justifyContent={"space-evenly"}>
-            {coins.map((i) => (
-              <CoinCard
-                key  ={i.market_cap_rank}
-                name ={i.name}
-                img  ={i.image}
-                price={i.current_price}
-              symbol ={i.symbol}
-               id    ={i.id}
-      
-              />
-            ))}
-          </HStack>
-        </>
-      )}
-    </Container>
-  );
-};
-
-
-
-
-
-
+    <div>Coins</div>
+  )
+}
 
 export default Coins
 
